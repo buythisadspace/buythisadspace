@@ -1,30 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <title >Buy This Ad Space</title>
-
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
-
     <!-- Custom styles for this template -->
     <link href="css/the-big-picture.css" rel="stylesheet">
-
   </head>
 
   <body>
       <div data-spy="affix" class="pull-right mr-2 mt-2" 
                   style="margin-left: -65px; ">
-      <a class="text-info myModal" href="#" onclick="invitebox.show();" title="Share on Twitter" 
-      href="#"  rel="nofollow">
+      <a class="text-info" title="Share on Twitter" 
+      data-toggle="modal" data-target="#myModal">
       <span class="fa-stack fa-lg">
       <i class="fa fa-circle fa-stack-2x"></i>
       <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
@@ -32,8 +25,8 @@
                   </div>
       <div data-spy="affix" class="pull-right mr-2" 
                   style="margin-left: -65px; margin-top: 60px">
-      <a myModal" href="#" onclick="invitebox.show();" title="Share via facebook" 
-      href="#" rel="nofollow">
+      <a class="" title="Share via facebook" 
+      href="#" data-toggle="modal" data-target="#myModal">
       <span class="fa-stack fa-lg">
       <i class="fa fa-circle fa-stack-2x"></i>
       <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
@@ -42,12 +35,24 @@
       <div data-spy="affix" class="pull-right mr-2" 
                   style="margin-left: -65px; margin-top: 110px">
       <a class="text-success" title="Share via email" 
-      href="#" onclick="invitebox.show();" rel="nofollow">
+      href="#" data-toggle="modal" data-target="#myModal">
       <span class="fa-stack fa-lg">
       <i class="fa fa-circle fa-stack-2x"></i>
       <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
       </span></a>
                   </div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-body">
+        <a id="invitebox-href" href="https://invitebox.com/widget/19645/share">referral program</a>
+      </div>
+    </div>
+  </div>
+</div>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-bottom">
       <div class="container">
@@ -63,10 +68,11 @@
                 <span class="sr-only">(current)</span>
               </a>
             </li>
+
             <li class="nav-item">
-              <a class="nav-link " class="myModal" href="#" onclick="invitebox.show();">Become a Partner</a>
-            </li>
-            <li class="nav-item">
+                                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#myModal">
+  Share
+</button>
               <a href="./bid.html"><button type="button" class="btn btn-primary navbar-btn">Make a Bid</button></a>
             </li>
           </ul>
@@ -88,36 +94,22 @@
               <li class="h4 text-white"><p>The auction process is managed by a smart contract on the Ethereum Blockchain.</p></li>
               <li class="h4 text-white"><p>Auction proceeds are distributed between this ad space (50%) and its audience (50%).</p></li>
               <li class="h4 text-white"><p>When the winning ad goes live, a new four week bidding period starts.</p></li>
+              
+              
             </ul>
           </div>
 
         </div>
-<div class="modal fade" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Modal title</h4>
-      </div>
-      <div class="modal-body">
-        <p>One fine body&hellip;</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-<script id="invitebox-script" type="text/javascript">(function() {    var ib = document.createElement('script');    ib.type = 'text/javascript';    ib.async = true;    ib.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'invitebox.com/invitation-camp/19645/invitebox.js?key=9788c46ce1723e8924d21df18d978f5a&jquery='+(typeof(jQuery)=='undefined');    var s = document.getElementsByTagName('script')[0];    s.parentNode.insertBefore(ib, s);})();</script>
+<
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
+
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script>
-      $('.myModal').on('shown.bs.modal', function () {
-  $('#myInput').focus()
-})</script><script>
+      $('#myModal').on('shown.bs.modal', function () {
+      $('#myInput').focus()
+})
     // Set the date we're counting down to
     var countDownDate = new Date("Feb 14, 2018 00:00:00").getTime();
 
@@ -147,6 +139,9 @@
       }
     }, 1000);
     </script>
+
+
+<script id="invitebox-script" type="text/javascript">(function() {    var ib = document.createElement('script');    ib.type = 'text/javascript';    ib.async = true;    ib.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'invitebox.com/invitation-camp/19645/invitebox.js?key=9788c46ce1723e8924d21df18d978f5a&jquery='+(typeof(jQuery)=='undefined');    var s = document.getElementsByTagName('script')[0];    s.parentNode.insertBefore(ib, s);})();</script><
   </body>
 
 </html>
