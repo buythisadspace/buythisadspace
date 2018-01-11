@@ -23,9 +23,8 @@
   <body>
       <div data-spy="affix" class="pull-right mr-2 mt-2" 
                   style="margin-left: -65px; ">
-      <a class="text-info" title="Share on Twitter" 
-      href="http://twitter.com/home?status=Check out this ad space! #Ethereum #Smartcontract" 
-      target="_blank" rel="nofollow">
+      <a class="text-info myModal" href="#" onclick="invitebox.show();" title="Share on Twitter" 
+      href="#"  rel="nofollow">
       <span class="fa-stack fa-lg">
       <i class="fa fa-circle fa-stack-2x"></i>
       <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
@@ -33,9 +32,8 @@
                   </div>
       <div data-spy="affix" class="pull-right mr-2" 
                   style="margin-left: -65px; margin-top: 60px">
-      <a class="" title="Share via facebook" 
-      href="https://www.facebook.com/sharer/sharer.php?u=www.buythisadspace.com" 
-      target="_blank" rel="nofollow">
+      <a myModal" href="#" onclick="invitebox.show();" title="Share via facebook" 
+      href="#" rel="nofollow">
       <span class="fa-stack fa-lg">
       <i class="fa fa-circle fa-stack-2x"></i>
       <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
@@ -44,8 +42,7 @@
       <div data-spy="affix" class="pull-right mr-2" 
                   style="margin-left: -65px; margin-top: 110px">
       <a class="text-success" title="Share via email" 
-      href="mailto:partners@domain.com?&subject=Let's talk" 
-      target="_blank" rel="nofollow">
+      href="#" onclick="invitebox.show();" rel="nofollow">
       <span class="fa-stack fa-lg">
       <i class="fa fa-circle fa-stack-2x"></i>
       <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
@@ -67,7 +64,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="mailto:partners@domain.com?&subject=Let's talk">Become a Partner</a>
+              <a class="nav-link " class="myModal" href="#" onclick="invitebox.show();">Become a Partner</a>
             </li>
             <li class="nav-item">
               <a href="./bid.html"><button type="button" class="btn btn-primary navbar-btn">Make a Bid</button></a>
@@ -93,14 +90,34 @@
               <li class="h4 text-white"><p>When the winning ad goes live, a new four week bidding period starts.</p></li>
             </ul>
           </div>
+
         </div>
+<div class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Modal title</h4>
       </div>
-    </section>
+      <div class="modal-body">
+        <p>One fine body&hellip;</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<script id="invitebox-script" type="text/javascript">(function() {    var ib = document.createElement('script');    ib.type = 'text/javascript';    ib.async = true;    ib.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'invitebox.com/invitation-camp/19645/invitebox.js?key=9788c46ce1723e8924d21df18d978f5a&jquery='+(typeof(jQuery)=='undefined');    var s = document.getElementsByTagName('script')[0];    s.parentNode.insertBefore(ib, s);})();</script>
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script>
+      $('.myModal').on('shown.bs.modal', function () {
+  $('#myInput').focus()
+})</script><script>
     // Set the date we're counting down to
     var countDownDate = new Date("Feb 14, 2018 00:00:00").getTime();
 
