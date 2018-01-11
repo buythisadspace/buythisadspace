@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title >Buy This Ad Space</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+    <!-- Custom styles for this template -->
+    <link href="css/the-big-picture.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+      <div data-spy="affix" class="pull-right mr-2 mt-2" 
+                  style="margin-left: -65px; ">
+      <a class="text-info" title="Share on Twitter" 
+      href="http://twitter.com/home?status=Check out this ad space! #Ethereum #Smartcontract" 
+      target="_blank" rel="nofollow">
+      <span class="fa-stack fa-lg">
+      <i class="fa fa-circle fa-stack-2x"></i>
+      <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+      </span></a>
+                  </div>
+      <div data-spy="affix" class="pull-right mr-2" 
+                  style="margin-left: -65px; margin-top: 60px">
+      <a class="" title="Share via facebook" 
+      href="https://www.facebook.com/sharer/sharer.php?u=www.buythisadspace.com" 
+      target="_blank" rel="nofollow">
+      <span class="fa-stack fa-lg">
+      <i class="fa fa-circle fa-stack-2x"></i>
+      <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+      </span></a>
+                  </div>
+      <div data-spy="affix" class="pull-right mr-2" 
+                  style="margin-left: -65px; margin-top: 110px">
+      <a class="text-success" title="Share via email" 
+      href="mailto:partners@domain.com?&subject=Let's talk" 
+      target="_blank" rel="nofollow">
+      <span class="fa-stack fa-lg">
+      <i class="fa fa-circle fa-stack-2x"></i>
+      <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+      </span></a>
+                  </div>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-bottom">
+      <div class="container">
+        <a class="navbar-brand" href="#"><span >Closes in </span><span id="demo" ></span></a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#"><p ></p>
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="mailto:partners@domain.com?&subject=Let's talk">Become a Partner</a>
+            </li>
+            <li class="nav-item">
+              <a href="./bid.html"><button type="button" class="btn btn-primary navbar-btn">Make a Bid</button></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <section>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <h1 class="mt-5 text-white">Buy This Ad Space</h1>
+
+
+
+            <ul>
+              <li class="h4 text-white"><p>On February 14 2018, this ad space will be made available to the highest bidder.</p></li>
+              <li class="h4 text-white"><p>The auction process is managed by a smart contract on the Ethereum Blockchain.</p></li>
+              <li class="h4 text-white"><p>Auction proceeds are distributed between this ad space (50%) and its partners (50%).</p></li>
+              <li class="h4 text-white"><p>When the winning ad goes live, a new four week bidding period starts.</p></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script>
+    // Set the date we're counting down to
+    var countDownDate = new Date("Feb 14, 2018 00:00:00").getTime();
+
+    // Update the count down every 1 second
+    var x = setInterval(function() {
+
+      // Get todays date and time
+      var now = new Date().getTime();
+
+      // Find the distance between now an the count down date
+      var distance = countDownDate - now;
+
+      // Time calculations for days, hours, minutes and seconds
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      // Display the result in the element with id="demo"
+      document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+      + minutes + "m " + seconds + "s ";
+
+      // If the count down is finished, write some text 
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("demo").innerHTML = "EXPIRED";
+      }
+    }, 1000);
+    </script>
+  </body>
+
+</html>

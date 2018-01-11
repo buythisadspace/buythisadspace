@@ -1,0 +1,300 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.2.3/milligram.min.css">
+  </head>
+  <body class="container" style="padding-top: 3%;">
+    <h2><a href="index.html">Buy this adspace</a></h2>
+    <h4>Make a bid</h4>
+
+    <hr />
+
+    <div class="row">
+      <div class="column">
+        <label>Beneficiary</label>
+        <blockquote><p><em id="beneficiary">Loading..</em><br /><br /></p></blockquote>
+      </div>
+      <div class="column">
+        <label>Raised</label>
+        <blockquote><p><em><span id="raised">Loading..</span><br />ETH</em></p></blockquote>
+      </div>
+      <div class="column">
+        <label>Timeleft</label>
+        <blockquote><p><em id="timeleft">Loading..</em><br />seconds</p></blockquote>
+      </div>
+      <div class="column">
+        <label>Highest Bidder</label>
+        <blockquote><p><em><span id="highestBidder"></span><br />
+        <span id="highestBid"></span> ETH</em></p></blockquote>
+      </div>
+      <div class="column">
+        <label>Your Account<label>
+        <blockquote><p><em id="accountAddress">Loading..</em><br /><br /></p></blockquote>
+      </div>
+      <div class="column">
+        <label>Balance</label>
+        <blockquote><p><em id="accountBalance">Loading..</em><br />ETH</p></blockquote>
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="row">
+      <div class="column column-33">
+        <label>From Account</label>
+        <select id="bidAccount">
+        </select>
+      </div>
+      <div class="column column-25">
+        <label>Bid Amount</label>
+        <input type="number" id="bidAmount" placeholder="28300 ether">
+      </div>
+      <div class="column column-25">
+        <label><br /></label>
+        <button id="makeBid">Bid</button>
+      </div>
+    </div>
+
+    <hr />
+
+    <button id="endAuction" disabled="disabled">End Auction</button>
+
+    <br /><br />
+
+    <div id="response"></div>
+
+    <script type="text/javascript" src="ethereumjs-testrpc.js"></script>
+    <script type="text/javascript" src="ethjs.js"></script>
+    <script type="text/javascript">
+      var eth = new Eth(TestRPC.provider());
+      var el = function(id){ return document.querySelector(id); };
+
+      
+      // uncomment to enable MetaMask support:
+      // if (typeof window.web3 !== 'undefined' && typeof window.web3.currentProvider !== 'undefined') {
+      //   eth.setProvider(window.web3.currentProvider);
+      // } else {
+      //   eth.setProvider(provider); // set to TestRPC if not available
+      // }
+      
+
+      eth.accounts().then(function(accounts) {
+        accounts.forEach(function(address){
+          bidAccount.innerHTML += '<option value="' + address + '">'
+            + address + '</option>';
+        });
+
+        el('#accountAddress').innerHTML = accounts[0].substr(0, 12);
+
+        var SimpleAuctionBytecode = '0x6060604052341561000f57600080fd5b60405160408061069283398101604052808051906020019091908051906020019091905050806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555081420160018190555050506106048061008e6000396000f300606060405260043610610078576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680631998aeef1461007d5780632a24f46c1461008757806338af3eed1461009c5780633ccfd60b146100f157806391f901571461011e578063d57bde7914610173575b600080fd5b61008561019c565b005b341561009257600080fd5b61009a610326565b005b34156100a757600080fd5b6100af610462565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34156100fc57600080fd5b610104610487565b604051808215151515815260200191505060405180910390f35b341561012957600080fd5b6101316105ac565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b341561017e57600080fd5b6101866105d2565b6040518082815260200191505060405180910390f35b60015442111515156101ad57600080fd5b600354341115156101bd57600080fd5b6000600260009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff161415156102715760035460046000600260009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600082825401925050819055505b33600260006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550346003819055507ff4757a49b326036464bec6fe419a4ae38c8a02ce3e68bf0809674f6aab8ad3003334604051808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018281526020019250505060405180910390a1565b600154421015151561033757600080fd5b600560009054906101000a900460ff1615151561035357600080fd5b6001600560006101000a81548160ff0219169083151502179055507fdaec4582d5d9595688c8c98545fdd1c696d41c6aeaeb636737e84ed2f5c00eda600260009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16600354604051808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018281526020019250505060405180910390a16000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166108fc6003549081150290604051600060405180830381858888f19350505050151561046057600080fd5b565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b600080600460003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002054905060008111156105a3576000600460003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020819055503373ffffffffffffffffffffffffffffffffffffffff166108fc829081150290604051600060405180830381858888f1935050505015156105a25780600460003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002081905550600091506105a8565b5b600191505b5090565b600260009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b600354815600a165627a7a72305820faede1ef78dbb4f8c592a4be3937ce9f1c20f247dd7d2688583a747b3dcf4267002900000000000000000000000000000000000000000000000000000000000000640000000000000000000000000000000000000000000000000000000000000000';
+        var SimpleAuctionABI = [ { "constant": false, "inputs": [], "name": "bid", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" }, { "constant": false, "inputs": [], "name": "auctionEnd", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "beneficiary", "outputs": [ { "name": "", "type": "address", "value": "0x0bb3a148952f553cf868b09096d584e7ca4edbcb" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [], "name": "withdraw", "outputs": [ { "name": "", "type": "bool" } ], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "highestBidder", "outputs": [ { "name": "", "type": "address", "value": "0x0000000000000000000000000000000000000000" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "highestBid", "outputs": [ { "name": "", "type": "uint256", "value": "0" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "inputs": [ { "name": "_biddingTime", "type": "uint256", "index": 0, "typeShort": "uint", "bits": "256", "displayName": "&thinsp;<span class=\"punctuation\">_</span>&thinsp;bidding Time", "template": "elements_input_uint", "value": "500" }, { "name": "_beneficiary", "type": "address", "index": 1, "typeShort": "address", "bits": "", "displayName": "&thinsp;<span class=\"punctuation\">_</span>&thinsp;beneficiary", "template": "elements_input_address", "value": "" } ], "payable": false, "stateMutability": "nonpayable", "type": "constructor" }, { "anonymous": false, "inputs": [ { "indexed": false, "name": "bidder", "type": "address" }, { "indexed": false, "name": "amount", "type": "uint256" } ], "name": "HighestBidIncreased", "type": "event" }, { "anonymous": false, "inputs": [ { "indexed": false, "name": "winner", "type": "address" }, { "indexed": false, "name": "amount", "type": "uint256" } ], "name": "AuctionEnded", "type": "event" } ]
+        var SimpleAuction = eth.contract(SimpleAuctionABI, SimpleAuctionBytecode, { from: accounts[0], gas: 3000000 });
+        var simpleAuctionInstance;
+        var beneficiary = accounts[0];
+        var biddingTime = 300; // 15 thousand seconds
+
+        // poll for new auction data
+        var auctionInterval = setInterval(function updateAuctionHTML() {
+          if (!simpleAuctionInstance) { return; }
+
+          eth.getBalance(accounts[0]).then(function(balance){
+            el('#accountBalance').innerHTML = Eth.fromWei(balance, 'ether');
+          });
+          eth.getBalance(simpleAuctionInstance.address).then(function(auctionBalance){
+            el('#raised').innerHTML = Eth.fromWei(auctionBalance, 'ether');
+          });
+          simpleAuctionInstance.beneficiary().then(function(beneficiary){
+            el('#beneficiary').innerHTML = beneficiary[0].substr(0, 12);
+          });
+          simpleAuctionInstance.highestBidder().then(function(highestBidder){
+            el('#highestBidder').innerHTML = highestBidder[0].substr(0, 12);
+          });
+          simpleAuctionInstance.highestBid().then(function(highestBid){
+            el('#highestBid').innerHTML = Eth.fromWei(highestBid[0], 'ether');
+          });
+          simpleAuctionInstance.auctionStart().then(function(auctionStart){
+            simpleAuctionInstance.biddingTime().then(function(biddingTime){
+              var timeleft = (auctionStart[0].add(biddingTime[0]))
+              .sub(new Eth.BN((new Date()).getTime() / 1000));
+
+              el('#timeleft').innerHTML = timeleft.toString(10);
+
+              // time left is less than or equal to (lte) 0
+              if (timeleft.lte(0)) {
+                clearInterval(auctionInterval);
+                el('#endAuction').disabled = '';
+              }
+            });
+          });
+        }, 600);
+
+        SimpleAuction.new(biddingTime, beneficiary, function(deployError, deployTxHash){
+          if (deployError) {
+            el('#response').innerHTML = 'Hmm, there was an error: ' + String(deployError);
+          }
+
+          var checkTransaction = setInterval(function(){
+            eth.getTransactionReceipt(deployTxHash).then(function(receipt){
+              if (receipt) {
+                clearInterval(checkTransaction);
+                simpleAuctionInstance = SimpleAuction.at(receipt.contractAddress);
+
+                el('#makeBid').addEventListener('click', function(){
+                  var bidTxObject = {
+                    from: el('#bidAccount').value,
+                    value: Eth.toWei(el('#bidAmount').value, 'ether'),
+                  };
+
+                  el('#response').innerHTML = 'Placing bid..';
+
+                  simpleAuctionInstance.bid(bidTxObject, function(bidError, bidResult){
+                    if (bidError) {
+                      el('#response').innerHTML = 'Hmm, there was an error' + String(bidError);
+                    } else {
+                      el('#response').innerHTML = 'Making bid with tx hash: ' + String(bidResult);
+                    }
+                  });
+                });
+
+                el('#endAuction').addEventListener('click', function(){
+                  el('#response').innerHTML = 'Ending auction...';
+
+                  simpleAuctionInstance.endAuction(function(endError, endResult){
+                    if (endError) {
+                      el('#response').innerHTML = 'Hmm, there was an error' + String(endError);
+                    } else {
+                      el('#response').innerHTML = 'Ending auction with tx hash: ' + String(endResult);
+                    }
+                  });
+                });
+              }
+            });
+          }, 400);
+        });
+      });
+    </script>
+
+    <pre><code>
+pragma solidity ^0.4.0;
+
+contract SimpleAuction {
+  // Parameters of the auction. Times are either
+  // absolute unix timestamps (seconds since 1970-01-01)
+  // or time periods in seconds.
+  address public beneficiary;
+  uint public auctionStart;
+  uint public biddingTime;
+
+  // Current state of the auction.
+  address public highestBidder;
+  uint public highestBid;
+
+  // Allowed withdrawals of previous bids
+  mapping(address => uint) pendingReturns;
+
+  // Set to true at the end, disallows any change
+  bool ended;
+
+  // Events that will be fired on changes.
+  event HighestBidIncreased(address bidder, uint amount);
+  event AuctionEnded(address winner, uint amount);
+
+  // The following is a so-called natspec comment,
+  // recognizable by the three slashes.
+  // It will be shown when the user is asked to
+  // confirm a transaction.
+
+  /// Create a simple auction with `_biddingTime`
+  /// seconds bidding time on behalf of the
+  /// beneficiary address `_beneficiary`.
+  function SimpleAuction(
+      uint _biddingTime,
+      address _beneficiary
+  ) {
+    beneficiary = _beneficiary;
+    auctionStart = now;
+    biddingTime = _biddingTime;
+  }
+
+  /// Bid on the auction with the value sent
+  /// together with this transaction.
+  /// The value will only be refunded if the
+  /// auction is not won.
+  function bid() payable {
+    // No arguments are necessary, all
+    // information is already part of
+    // the transaction. The keyword payable
+    // is required for the function to
+    // be able to receive Ether.
+    if (now > auctionStart + biddingTime) {
+      // Revert the call if the bidding
+      // period is over.
+      throw;
+    }
+    if (msg.value <= highestBid) {
+      // If the bid is not higher, send the
+      // money back.
+      throw;
+    }
+    if (highestBidder != 0) {
+      // Sending back the money by simply using
+      // highestBidder.send(highestBid) is a security risk
+      // because it can be prevented by the caller by e.g.
+      // raising the call stack to 1023. It is always safer
+      // to let the recipient withdraw their money themselves.
+      pendingReturns[highestBidder] += highestBid;
+    }
+    highestBidder = msg.sender;
+    highestBid = msg.value;
+    HighestBidIncreased(msg.sender, msg.value);
+  }
+
+  /// Withdraw a bid that was overbid.
+  function withdraw() returns (bool) {
+    var amount = pendingReturns[msg.sender];
+    if (amount > 0) {
+      // It is important to set this to zero because the recipient
+      // can call this function again as part of the receiving call
+      // before `send` returns.
+      pendingReturns[msg.sender] = 0;
+
+      if (!msg.sender.send(amount)) {
+        // No need to call throw here, just reset the amount owing
+        pendingReturns[msg.sender] = amount;
+        return false;
+      }
+    }
+    return true;
+  }
+
+  /// End the auction and send the highest bid
+  /// to the beneficiary.
+  function auctionEnd() {
+    // It is a good guideline to structure functions that interact
+    // with other contracts (i.e. they call functions or send Ether)
+    // into three phases:
+    // 1. checking conditions
+    // 2. performing actions (potentially changing conditions)
+    // 3. interacting with other contracts
+    // If these phases are mixed up, the other contract could call
+    // back into the current contract and modify the state or cause
+    // effects (ether payout) to be perfromed multiple times.
+    // If functions called internally include interaction with external
+    // contracts, they also have to be considered interaction with
+    // external contracts.
+
+    // 1. Conditions
+    if (now <= auctionStart + biddingTime)
+      throw; // auction did not yet end
+    if (ended)
+      throw; // this function has already been called
+
+    // 2. Effects
+    ended = true;
+    AuctionEnded(highestBidder, highestBid);
+
+    // 3. Interaction
+    if (!beneficiary.send(highestBid))
+      throw;
+  }
+}
+  </code></pre>
